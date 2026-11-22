@@ -1,0 +1,29 @@
+name: DevOps CI
+
+on:
+  push:
+    branches:
+      - main
+      - development
+
+  pull_request:
+    branches:
+      - main
+      - development
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Check Git Version
+        run: git --version
+
+      - name: Run Test
+        run: |
+          echo "Running CI Tests..."
+          test -f index.html
+          echo "All tests passed!"
